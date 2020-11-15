@@ -1,6 +1,4 @@
 
-
-
 //----- DOM Elements -----
 
 const profileImage = document.getElementById("profile-image");
@@ -25,7 +23,7 @@ fetch("https://api.github.com/graphql", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
-    Authorization: "bearer 7bccf91d9e6416fa0a8f4eae432b7e73d01ac819",
+    Authorization: `bearer ${config.apikey}`,
   },
   body: JSON.stringify({
     query: `
