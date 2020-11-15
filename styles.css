@@ -4,7 +4,8 @@
     --large: calc(var(--size) * 2.5);
     --grey: #24292e;
     --light: #586069;
-    --very-light: #e1e4e8;major    --blue: #0366d6;
+    --very-light: #e1e4e8;
+    --blue: #0366d6;
     --red: #e36209;
 }
 

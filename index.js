@@ -15,6 +15,7 @@ const result = document.getElementById("result");
 const boxContainer = document.querySelector(".box-container");
 const name = document.querySelector(".name");
 const emoji = document.querySelector(".emoji")
+const links = document.querySelectorAll('a');
 
 //------------------------
 
@@ -211,6 +212,12 @@ document.addEventListener('scroll', () => {
   }
   else {
     name.style.visibility = "hidden";
+  }
+})
+
+links.forEach(link => {
+  link.onclick = (event) => {
+    event.preventDefault();
   }
 })
 
