@@ -177,7 +177,7 @@ img {
 
 .active {
   color: var(--grey);
-  font-weight: 500;
+  font-weight: 600;
   border-bottom: 2px solid var(--red);
 }
 
@@ -247,9 +247,9 @@ main {
 }
 
 #bio {
-  font-size: calc(var(--size) + 3px);
+  font-size: calc(var(--size) + 2px);
   color: var(--grey);
-  margin-top: var(--medium-size);
+  margin-top: var(--size);
 }
 
 .left-side > * + *:not(h1) {
@@ -408,6 +408,10 @@ footer ul > * {
     padding: 0;
   }
 
+  .right-lower-nav li:first-child{
+      padding-left: 0;
+  }
+
   .right-nav,
   .left-nav {
     display: none;
@@ -439,5 +443,9 @@ footer ul > * {
 
   #bio {
     margin-top: 0;
+  }
+
+  .hide{
+      display: none;
   }
 }
