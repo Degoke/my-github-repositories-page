@@ -14,9 +14,8 @@ const totalRepo = document.getElementById("total-repo");
 const result = document.getElementById("result");
 const boxContainer = document.querySelector(".box-container");
 const name = document.querySelector(".name");
-const emoji = document.querySelector(".emoji")
-const links = document.querySelectorAll('a');
-
+const emoji = document.querySelector(".emoji");
+const links = document.querySelectorAll("a");
 //------------------------
 
 fetch("https://api.github.com/graphql", {
@@ -128,8 +127,6 @@ fetch("https://api.github.com/graphql", {
       return `Updated ${interval} ${intervalType} ago`;
     };
 
-
-
     const iterateDatabase = (db) => {
       const public = db.filter((re) => {
         return !re.isPrivate;
@@ -148,27 +145,40 @@ fetch("https://api.github.com/graphql", {
             } d="M12 18a6 6 0 100-12 6 6 0 000 12z"></path></svg></span>${
           el.primaryLanguage ? el.primaryLanguage.name : ""
         }</p>
-            <p class='group stars' ${el.stargazerCount ? 'style= "display: flex;"' : 'style= "display: none;"'}><span><img src="/github-icons/star.svg" alt=""></span>${
-              el.stargazerCount ? el.stargazerCount : ""
-            }</p>
-            <p class='group stars' ${el.forkCount ? 'style= "display: flex;"' : 'style= "display: none;"'}><span><img src="/github-icons/repo-forked.svg" alt=""></span>${
-              el.forkCount ? el.forkCount : ""
-            }</p>
-            <p class='group stars' ${el.licenseInfo ? 'style= "display: flex;"' : 'style= "display: none;"'}><span><img src="/github-icons/law.svg" alt=""></span>${
-              el.licenseInfo ? el.licenseInfo.name : ""
-            }</p>
+            <p class='group stars' ${
+              el.stargazerCount
+                ? 'style= "display: flex;"'
+                : 'style= "display: none;"'
+            }><span><img src="/github-icons/star.svg" alt=""></span>${
+          el.stargazerCount ? el.stargazerCount : ""
+        }</p>
+            <p class='group stars' ${
+              el.forkCount
+                ? 'style= "display: flex;"'
+                : 'style= "display: none;"'
+            }><span><img src="/github-icons/repo-forked.svg" alt=""></span>${
+          el.forkCount ? el.forkCount : ""
+        }</p>
+            <p class='group stars' ${
+              el.licenseInfo
+                ? 'style= "display: flex;"'
+                : 'style= "display: none;"'
+            }><span><img src="/github-icons/law.svg" alt=""></span>${
+          el.licenseInfo ? el.licenseInfo.name : ""
+        }</p>
             <p >${timeSince(el.updatedAt)}</p>
           </div>
         </div>
         <div class="star">
-          <button class="group stars"><img src="/github-icons/${el.viewerHasStarred ? 'star-fill' : 'star'}.svg" alt=""><p>${
-            el.viewerHasStarred ? "Unstar" : "Star"
-          }</p></button>
+          <button class="group stars"><img src="/github-icons/${
+            el.viewerHasStarred ? "star-fill" : "star"
+          }.svg" alt=""><p>${
+          el.viewerHasStarred ? "Unstar" : "Star"
+        }</p></button>
         </div>
       </div>`;
       });
     };
-
 
     addImage(profileImage);
 
@@ -193,38 +203,23 @@ fetch("https://api.github.com/graphql", {
     addInnerText(database, totalRepo, "repositories", "totalCount");
 
     iterateDatabase(database.repositories.nodes);
-
-
   });
-
-
 
 const inView = (elem) => {
   let distance = elem.getBoundingClientRect();
-  return distance.top > -distance.height
+  return distance.top > -distance.height;
 };
 
-
-  
-document.addEventListener('scroll', () => {
+document.addEventListener("scroll", () => {
   if (!inView(bigImage)) {
     name.style.visibility = "visible";
-  }
-  else {
+  } else {
     name.style.visibility = "hidden";
   }
-})
+});
 
-links.forEach(link => {
+links.forEach((link) => {
   link.onclick = (event) => {
     event.preventDefault();
-  }
-})
-
-
-
-
-
-
-
-  
+  };
+});
