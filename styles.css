@@ -163,6 +163,7 @@ img{
 .right-lower-nav{
     display: flex;
     flex: 75%;
+    padding-left: var(--size);
 }
 
 .right-lower-nav li:not(.active):hover{
