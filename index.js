@@ -12,7 +12,9 @@ const login = document.getElementById("login");
 const bigImage = document.getElementById("big-image");
 const totalRepo = document.getElementById("total-repo");
 const result = document.getElementById("result");
-const boxContainer = document.querySelector(".result");
+const boxContainer = document.querySelector(".box-container");
+const name = document.querySelector(".name");
+const emoji = document.querySelector(".emoji")
 
 //------------------------
 
@@ -68,7 +70,6 @@ fetch("https://api.github.com/graphql", {
   .then((data) => {
     const database = data.data.viewer;
 
-
     const addInnerText = (db, elem, val1, val2, val3) => {
       if (!val2 && !val3) {
         return (elem.innerHTML = db[val1]);
@@ -81,29 +82,27 @@ fetch("https://api.github.com/graphql", {
       return (elem.innerHTML = db[val1][val2][val3]);
     };
 
-
     const addImage = (elem) => {
       return (elem.src = database.avatarUrl);
     };
 
-
     const timeSince = (strDate) => {
-      let date = Date.parse(strDate)
+      let date = Date.parse(strDate);
 
       let seconds = Math.floor((new Date() - date) / 1000);
       let intervalType;
-    
+
       let interval = Math.floor(seconds / 31536000);
       if (interval >= 1) {
-        intervalType = 'year';
+        intervalType = "year";
       } else {
         interval = Math.floor(seconds / 2592000);
         if (interval >= 1) {
-          intervalType = 'month';
+          intervalType = "month";
         } else {
           interval = Math.floor(seconds / 86400);
           if (interval >= 1) {
-            intervalType = 'day';
+            intervalType = "day";
           } else {
             interval = Math.floor(seconds / 3600);
             if (interval >= 1) {
@@ -120,13 +119,14 @@ fetch("https://api.github.com/graphql", {
           }
         }
       }
-    
+
       if (interval > 1 || interval === 0) {
-        intervalType += 's';
+        intervalType += "s";
       }
-    
-      return `${interval} ${intervalType} ago`
+
+      return `Updated ${interval} ${intervalType} ago`;
     };
+
 
 
     const iterateDatabase = (db) => {
@@ -134,9 +134,7 @@ fetch("https://api.github.com/graphql", {
         return !re.isPrivate;
       });
 
-
-      result.innerHTML = public.length;
-
+      result.innerHTML = `<strong>${public.length}</strong>`;
 
       public.forEach((el) => {
         boxContainer.innerHTML += `<div class="repository-box">
@@ -144,25 +142,27 @@ fetch("https://api.github.com/graphql", {
           <h2>${el.name}</h2>
           <p>${el.description ? el.description : ""}</p>
           <div class="stats">
-            <p ><span><img src="/github-icons/dot-fill (1).svg" alt=""></span>${
-              el.primaryLanguage ? el.primaryLanguage.name : ""
-            }</p>
-            <p ><span><img src="/github-icons/star.svg" alt=""></span>${
+            <p class='group'><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill=${
+              el.primaryLanguage.color
+            } d="M12 18a6 6 0 100-12 6 6 0 000 12z"></path></svg></span>${
+          el.primaryLanguage ? el.primaryLanguage.name : ""
+        }</p>
+            <p class='group stars' ${el.stargazerCount ? 'style= "display: flex;"' : 'style= "display: none;"'}><span><img src="/github-icons/star.svg" alt=""></span>${
               el.stargazerCount ? el.stargazerCount : ""
             }</p>
-            <p ><span><img src="/github-icons/repo-forked.svg" alt=""></span>${
+            <p class='group stars' ${el.forkCount ? 'style= "display: flex;"' : 'style= "display: none;"'}><span><img src="/github-icons/repo-forked.svg" alt=""></span>${
               el.forkCount ? el.forkCount : ""
             }</p>
-            <p ><span><img src="/github-icons/law.svg" alt=""></span>${
+            <p class='group stars' ${el.licenseInfo ? 'style= "display: flex;"' : 'style= "display: none;"'}><span><img src="/github-icons/law.svg" alt=""></span>${
               el.licenseInfo ? el.licenseInfo.name : ""
             }</p>
-            <p>${timeSince(el.updatedAt)}</p>
+            <p >${timeSince(el.updatedAt)}</p>
           </div>
         </div>
         <div class="star">
-          <button class="group"><img src="/github-icons/star.svg" alt="">${
+          <button class="group stars"><img src="/github-icons/${el.viewerHasStarred ? 'star-fill' : 'star'}.svg" alt=""><p>${
             el.viewerHasStarred ? "Unstar" : "Star"
-          }</button>
+          }</p></button>
         </div>
       </div>`;
       });
@@ -192,4 +192,32 @@ fetch("https://api.github.com/graphql", {
     addInnerText(database, totalRepo, "repositories", "totalCount");
 
     iterateDatabase(database.repositories.nodes);
+
+
   });
+
+
+
+const inView = (elem) => {
+  let distance = elem.getBoundingClientRect();
+  return distance.top > -distance.height
+};
+
+
+  
+document.addEventListener('scroll', () => {
+  if (!inView(bigImage)) {
+    name.style.visibility = "visible";
+  }
+  else {
+    name.style.visibility = "hidden";
+  }
+})
+
+
+
+
+
+
+
+  

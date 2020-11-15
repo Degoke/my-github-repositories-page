@@ -3,78 +3,149 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
+    <link rel="shortcut icon" href="/github-icons/github.svg" sizes='32x32' type="image/x-icon">
     <title>Your Repositories</title>
   </head>
   <body>
     <header>
       <nav class="upper-nav-bar">
         <ul class="right-nav">
-          <li><a href=""><img src="/github-icons/github.svg" alt="" width="30"></a></li>
+          <li>
+            <a href=""
+              ><img
+                src="/github-icons/github.svg"
+                alt=""
+                width="32"
+                height="32"
+            /></a>
+          </li>
           <li class="group top-search">
             <label>
               <input type="search" name="" placeholder="Search or jump to..." />
             </label>
-            <img src="/github-icons/diff-ignored.svg" alt="" id="inner">
+            <img src="/github-icons/diff-ignored.svg" alt="" id="inner" />
           </li>
-          <li><a href="">Pull requests</a></li>
+          <li id="pull"><a href="">Pull requests</a></li>
           <li><a href="">Issues</a></li>
           <li><a href="">Marketplace</a></li>
           <li><a href="">Explore</a></li>
         </ul>
+
         <ul class="left-nav">
-          <li class="group"><img src="/github-icons/bell (1).svg" alt=""></li>
-          <li class="group"><img src="/github-icons/plus.svg" alt="">
-        <img src="/github-icons/triangle-down.svg" alt="triangle down"></li>
-          <li class="group"><img  width=20px id='profile-image'/> <img src="/github-icons/triangle-down.svg" alt=""> </li>
+          <li class="group"><img src="/github-icons/bell (1).svg" alt="" /></li>
+          <li class="group">
+            <img src="/github-icons/plus.svg" alt="" />
+            <img src="/github-icons/triangle-down.svg" alt="triangle down" />
+          </li>
+          <li class="group">
+            <img width="20px" id="profile-image" />
+            <img src="/github-icons/triangle-down.svg" alt="" />
+          </li>
         </ul>
-      </nav>
-      <nav class="lower-nav-bar">
-        <div class="name group">
-            <img width=36px id="name-display"/> 
-            <div id="login"></div>
-        </div>
-        <div class="right-lower-nav">
-          <li><a href="" class="group"><img src="/github-icons/book.svg" alt="">Overview</a></li>
-          <li><a href="" class="group"><img src="/github-icons/repo.svg" alt="repository"> Repositories <span id="total-repo"></span></a></li>
-          <li><a href="" class="group"><img src="/github-icons/project.svg" alt=""> Projects</a></li>
-          <li><a href="" class="group"><img src="/github-icons/package.svg" alt=""> Packages</a></li>
-        </div>
+        <ul class="mobile-nav">
+          <li><img src="/github-icons/three-bars.svg" alt="" /></li>
+          <li><img src="/github-icons/github.svg" alt="" width="30" /></li>
+          <li><img src="/github-icons/bell (1).svg" alt="" /></li>
+        </ul>
       </nav>
     </header>
     <main>
+      <nav class="lower-nav-bar">
+        <div class="name group">
+          <img width="32px" id="name-display" />
+          <div class="st" id="login"></div>
+        </div>
+        <div class="right-lower-nav">
+          <li>
+            <a href="" class="group"
+              ><img src="/github-icons/book.svg" alt="" />Overview</a
+            >
+          </li>
+          <li class="active">
+            <a href="" class="group"
+              ><img src="/github-icons/repo.svg" alt="repository" />
+              Repositories <span id="total-repo"></span
+            ></a>
+          </li>
+          <li>
+            <a href="" class="group"
+              ><img src="/github-icons/project.svg" alt="" /> Projects</a
+            >
+          </li>
+          <li>
+            <a href="" class="group"
+              ><img src="/github-icons/package.svg" alt="" /> Packages</a
+            >
+          </li>
+        </div>
+      </nav>
       <div class="left-side">
-          <div class='main-img'>
-            <div><img id="big-image"/></div>
-            
-            <div class="status"><img src="/github-icons/smiley.svg" alt="" id='smiley'></div>
-            
-            
-            
+        <div class="profile">
+          <div class="main-img">
+            <img id="big-image" />
           </div>
-        <h1 id="name"></h1>
-        <p id="username"></p>
+          <div>
+            <h1 id="name"></h1>
+            <p id="username"></p>
+          </div>
+        </div>
+        <div class="emoji stars">
+          <img src="/github-icons/smiley.svg" alt="" id="smiley" />
+          <p class="status">Set status</p>
+        </div>
         <p id="bio"></p>
         <button>Edit Profile</button>
-        <p><img src="github-icons/people.svg"><span id="following"></span> following. <span id="followers"></span> followers. <img src="github-icons/star.svg"><span id="stars"></span></p>
-        
+        <div class="social">
+          <div class="follow group stars">
+            <img src="github-icons/people.svg" />
+            <p>
+              <span id="followers"></span> followers. <span
+                id="following"
+              ></span>
+               following. 
+            </p>
+          </div>
+          <div class="starred group stars">
+            <img src="github-icons/star.svg" />
+            <p><span id="stars"></span></p>
+          </div>
+        </div>
       </div>
       <div class="right-side">
-          <label for="">
-            <input type="search" name="" id="search" />
-            </label>
+        <div class="searchbox">
+          <label>
+            <input
+              type="search"
+              id="search"
+              placeholder="Find a Repository..."
+            />
+          </label>
+        </div>
         <div class="result">
-            <span id="result"></span> results for public repositories
+          <p>
+            <span id="result"></span> results for
+            <strong>public</strong> repositories
+          </p>
         </div>
-        <div class="box-container">
-        </div>
-        
+        <div class="box-container"></div>
       </div>
     </main>
     <footer>
-      <ul></ul>
+      <ul>
+        <li>&copy; 2020 Github, inc & Degoke</li>
+        <li><a href="">Terms</a></li>
+        <li><a href="">Privacy</a></li>
+        <li><a href="">Security</a></li>
+        <li><a href="">Status</a></li>
+        <li><a href="">Help</a></li>
+        <li><a href="">Contact Github</a></li>
+        <li><a href="">Pricing</a></li>
+        <li><a href="">Api</a></li>
+        <li><a href="">Training</a></li>
+        <li><a href="">Blog</a></li>
+        <li><a href="">About</a></li>
+      </ul>
     </footer>
     <script src="index.js"></script>
   </body>
 </html>
-
-
