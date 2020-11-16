@@ -23,7 +23,7 @@ fetch("https://api.github.com/graphql", {
   method: "POST",
   headers: {
     "Content-Type": "application/json",
-    Authorization: `bearer ${process.env.API_KEY}`,
+    Authorization: `bearer ${atob('OTUzYzdkM2RiNTcwOWYwZGEwYjFlMjhkM2Q5NzMzNTMyZjUwMWM2Ng==')}`,
   },
   body: JSON.stringify({
     query: `
