@@ -138,7 +138,7 @@ fetch("https://api.github.com/graphql", {
       public.forEach((el) => {
         boxContainer.innerHTML += `<div class="repository-box">
         <div class="details">
-          <h2>${el.name}</h2>
+          <h2 class='repo-name'>${el.name}</h2>
           <p>${el.description ? el.description : ""}</p>
           <div class="stats">
             <p class='group'><span><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill=${

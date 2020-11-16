@@ -310,6 +310,10 @@ main {
   justify-content: space-between;
 }
 
+.repo-name:hover{
+  cursor: pointer;
+}
+
 .details > *:not(:last-child) {
   margin-bottom: var(--size);
 }
